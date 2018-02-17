@@ -1,0 +1,17 @@
+<?php
+/**
+  *
+  * main() will be invoked when you Run This Action
+  *
+  * @param Cloud Functions actions accept a single parameter, which must be a JSON object.
+  *
+  * @return The output of this action, which must be a JSON object.
+  *
+  */
+function main(array $args) : array
+{
+    $name = $args["message"] ?? "stranger";
+    $greeting = "Hello $name!";
+    echo $greeting;
+    return ["greeting" => $greeting];
+}

@@ -1,0 +1,7 @@
+.vscode/**
+static-src/typings/**
+static-src/test/**
+.gitignore
+jsconfig.json
+vsc-extension-quickstart.md
+RELEASE-README.md
