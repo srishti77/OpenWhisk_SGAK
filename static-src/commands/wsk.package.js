@@ -20,6 +20,7 @@
 var vscode = require('vscode');
 let util = require('./util.js');
 
+let helper = require('./helper.js');
 var log;
 var ow;
 var props;
@@ -35,16 +36,7 @@ function register(_ow, context, _log, _props) {
 
 
 function defaultAction(params) {
-    log.show(true);
-    log.appendLine('\n$ wsk package');
-    log.appendLine('available commands:');
-    log.appendLine('    create              create a new package');
-    log.appendLine('    update              update a new package');
-    log.appendLine('    bind                bind parameters to the package');
-    log.appendLine('    refresh             refresh package bindings');
-    log.appendLine('    get                 get package');
-    log.appendLine('    delete              delete package');
-    log.appendLine('    list                list all packages');
+        helper.defaultAction('package');
 }
 
 function packageList() {

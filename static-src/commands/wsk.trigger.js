@@ -19,7 +19,7 @@
 
 var vscode = require('vscode');
 let util = require('./util.js');
-
+let helper = require('./helper.js');
 var log;
 var ow;
 var props;
@@ -44,16 +44,7 @@ function register(_ow, context, _log, _props) {
 
 
 function defaultAction(params) {
-
-    log.show(true);
-    log.appendLine('\n$ wsk trigger');
-    log.appendLine('available commands:');
-    log.appendLine('    create              create new trigger');
-    log.appendLine('    update              update an existing trigger');
-    log.appendLine('    fire                fire trigger event');
-    log.appendLine('    get                 get trigger');
-    log.appendLine('    delete              delete trigger');
-    log.appendLine('    list                list all triggers');
+    helper.defaultAction('trigger')
 }
 
 

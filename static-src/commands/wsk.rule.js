@@ -24,6 +24,8 @@ let util = require('./util.js');
 let wskAction = require('./wsk.action.js');
 let wskTrigger = require('./wsk.trigger.js');
 
+let helper = require('./helper.js');
+
 var log;
 var ow;
 var props;
@@ -49,17 +51,7 @@ function register(_ow, context, _log, _props) {
 
 function defaultAction(params) {
 
-    log.show(true);
-    log.appendLine('\n$ wsk rule');
-    log.appendLine('available commands:');
-    log.appendLine('    create              create new rule');
-    log.appendLine('    delete              delete rule');
-    log.appendLine('    update              update an existing rule');
-    log.appendLine('    enable              enable rule');
-    log.appendLine('    disable             disable rule');
-    log.appendLine('    status              get rule status');
-    log.appendLine('    get                 get rule');
-    log.appendLine('    list                list all rules');
+  helper.defaultAction('rule');
 }
 
 
