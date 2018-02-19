@@ -37,7 +37,6 @@ function register(_ow, context, _log, _props) {
 
 
 function bluemixAction(params) {
-
     log.show(true);
     log.appendLine('\n$ opening OpenWhisk console on Bluemix');
     open('https://new-console.ng.bluemix.net/openwhisk');
@@ -45,7 +44,7 @@ function bluemixAction(params) {
 
 function docsAction(params) {
     log.show(true);
-    log.appendLine('\n$ opening OpenWhisk console on Bluemix');
+    log.appendLine('\n$ opening OpenWhisk docs on Bluemix');
     open('https://new-console.ng.bluemix.net/docs/openwhisk/index.html');
 }
 
