@@ -215,116 +215,116 @@ function selectActionAndRequestParameters(callback) {
 }
 
 
-// var wskdb = undefined;
-// function debugAction(params) {
+var wskdb = undefined;
+function debugAction(params) {
 
-//     if (!props.validate()){
-//         return;
-//     }
-//     selectActionAndRequestParameters( function(namespace, actionToInvoke, parametersString) {
+    if (!props.validate()){
+        return;
+    }
+    selectActionAndRequestParameters( function(namespace, actionToInvoke, parametersString) {
 
-//         wskdb = spawn('wskdb', []);
-//         wskdb.stdout.setEncoding('utf-8');
-//         wskdb.stdin.setEncoding('utf-8');
+        wskdb = spawn('wskdb', []);
+        wskdb.stdout.setEncoding('utf-8');
+        wskdb.stdin.setEncoding('utf-8');
 
-//         wskdb.on('error', (error) => {
-//             console.error(error);
-//             log.appendLine("Unable to invoke the wskdb debugger.  Please make sure that you have it installed.");
-//         })
+        wskdb.on('error', (error) => {
+            console.error(error);
+            log.appendLine("Unable to invoke the wskdb debugger.  Please make sure that you have it installed.");
+        })
 
-//         wskdb.stderr.on('data', (data) => {
-//             console.log(`stderr: ${data}`);
-//             log.appendLine("ERROR:" + data.toString())
-//             wskdb.kill();
-//         });
+        wskdb.stderr.on('data', (data) => {
+            console.log(`stderr: ${data}`);
+            log.appendLine("ERROR:" + data.toString())
+            wskdb.kill();
+        });
 
-//         wskdb.on('close', (code) => {
-//             console.log(`child process exited with code ${code}`);
-//             wskdb = undefined;
-//         });
+        wskdb.on('close', (code) => {
+            console.log(`child process exited with code ${code}`);
+            wskdb = undefined;
+        });
 
-//         var OK = /ok[\n|.*]*?\(wskdb\)/;
-//         var ERROR = /^Error\:/;
+        var OK = /ok[\n|.*]*?\(wskdb\)/;
+        var ERROR = /^Error\:/;
 
-//         var exit = function() {
-//             wskdb.stdout.removeAllListeners("data")
-//             wskdb.stdin.write("exit\n");
-//         }
+        var exit = function() {
+            wskdb.stdout.removeAllListeners("data")
+            wskdb.stdin.write("exit\n");
+        }
 
-//         var attachDebugger = function() {
-//             log.appendLine('\n$ attaching wskdb to ' + actionToInvoke);
+        var attachDebugger = function() {
+            log.appendLine('\n$ attaching wskdb to ' + actionToInvoke);
 
-//             wskdb.stdout.removeAllListeners("data")
-//             wskdb.stdin.write("attach " + actionToInvoke + "\n");
+            wskdb.stdout.removeAllListeners("data")
+            wskdb.stdin.write("attach " + actionToInvoke + "\n");
 
-//             var stdoutData;
-//             wskdb.stdout.on('data', (data) => {
-//                 //console.log(`stdout: ${data}`);
+            var stdoutData;
+            wskdb.stdout.on('data', (data) => {
+                //console.log(`stdout: ${data}`);
 
-//                 if (stdoutData == undefined) {
-//                     stdoutData = data;
-//                 } else {
-//                     stdoutData += data;
-//                 }
+                if (stdoutData == undefined) {
+                    stdoutData = data;
+                } else {
+                    stdoutData += data;
+                }
 
-//                 var str = data.toString();
-//                 if (stdoutData.match(OK)) {
-//                     invokeAction();
-//                 } else if (stdoutData.match(ERROR)) {
-//                     log.appendLine(str);
-//                     exit();
-//                 }
-//             });
-//         }
+                var str = data.toString();
+                if (stdoutData.match(OK)) {
+                    invokeAction();
+                } else if (stdoutData.match(ERROR)) {
+                    log.appendLine(str);
+                    exit();
+                }
+            });
+        }
 
-//         var invokeAction = function() {
+        var invokeAction = function() {
 
-//             log.appendLine('$ invoking wskdb with ' + actionToInvoke + ' ' + parametersString);
-//             wskdb.stdout.removeAllListeners("data")
-//             var stdinData = "invoke " + actionToInvoke + ' ' + parametersString;
-//             wskdb.stdin.write(stdinData + "\n");
+            log.appendLine('$ invoking wskdb with ' + actionToInvoke + ' ' + parametersString);
+            wskdb.stdout.removeAllListeners("data")
+            var stdinData = "invoke " + actionToInvoke + ' ' + parametersString;
+            wskdb.stdin.write(stdinData + "\n");
 
-//             var stdoutData;
-//             var wroteOutput = false;
+            var stdoutData;
+            var wroteOutput = false;
 
-//             wskdb.stdout.on('data', (data) => {
-//                 //console.log(`stdout: ${data}`);
+            wskdb.stdout.on('data', (data) => {
+                //console.log(`stdout: ${data}`);
 
-//                 var str = data.toString();
+                var str = data.toString();
 
-//                 if (stdoutData == undefined) {
-//                     stdoutData = data;
-//                 } else {
-//                     stdoutData += data;
-//                 }
+                if (stdoutData == undefined) {
+                    stdoutData = data;
+                } else {
+                    stdoutData += data;
+                }
 
-//                 //clean garbage that sometimes gets shoved into stdout when writing to stdin
-//                 if (stdoutData.indexOf(stdinData) >= 0) {
-//                     stdoutData = stdoutData.substring( stdoutData.indexOf(stdinData)+stdinData.length+1 )
-//                 }
+                //clean garbage that sometimes gets shoved into stdout when writing to stdin
+                if (stdoutData.indexOf(stdinData) >= 0) {
+                    stdoutData = stdoutData.substring( stdoutData.indexOf(stdinData)+stdinData.length+1 )
+                }
 
-//                 //if contains a complete json doc, print it
-//                 if (stdoutData.match(/{([^}]*)}/) && !wroteOutput) {
-//                     var outString = stdoutData.substring(stdoutData.indexOf("{"))
-//                     outString = outString.substring(0, outString.lastIndexOf("}")+1);
-//                     log.appendLine(outString);
-//                     wroteOutput = true
-//                 }
+                //if contains a complete json doc, print it
+                if (stdoutData.match(/{([^}]*)}/) && !wroteOutput) {
+                    var outString = stdoutData.substring(stdoutData.indexOf("{"))
+                    outString = outString.substring(0, outString.lastIndexOf("}")+1);
+                    log.appendLine(outString);
+                    wroteOutput = true
+                }
 
-//                 if (stdoutData.match(OK)) {
-//                     exit();
-//                 } else if (stdoutData.match(ERROR)) {
-//                     log.appendLine(str);
-//                     exit();
-//                 }
-//             });
-//         }
+                if (stdoutData.match(OK)) {
+                    exit();
+                } else if (stdoutData.match(ERROR)) {
+                    log.appendLine(str);
+                    exit();
+                }
+            });
+        }
 
-//         log.show(true);
-//         attachDebugger();
+        log.show(true);
+        attachDebugger();
 
-//     });
-// }
+    });
+}
 
 
 
