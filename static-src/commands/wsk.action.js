@@ -22,15 +22,16 @@ let util = require('./util.js');
 let fs = require('fs');
 let spawn = require('child_process').spawn;
 
-
+let helper = require('./helper.js');
 var importDirectory = '/wsk-import/';
 
 var log;
 var ow;
 var actions = [];
 var props;
-var context
+var context;
 
+var task = 'Srishti';
 
 //supported OpenWhisk file formats
 var NODE = 'JavaScript',
@@ -51,6 +52,7 @@ function register(_ow, _context, _log, _props) {
     props = _props;
     context = _context
 
+
     var defaultDisposable = vscode.commands.registerCommand('extension.wsk.action', defaultAction);
     var listDisposable = vscode.commands.registerCommand('extension.wsk.action.list', listAction);
     var invokeDisposable = vscode.commands.registerCommand('extension.wsk.action.invoke', invokeAction);
@@ -62,24 +64,14 @@ function register(_ow, _context, _log, _props) {
     var initDisposable = vscode.commands.registerCommand('extension.wsk.action.init', initAction);
     var restDisposable = vscode.commands.registerCommand('extension.wsk.action.rest', restAction);
     var createSequenceDisposable = vscode.commands.registerCommand('extension.wsk.action.sequence.create', createSequenceAction);
-
-    context.subscriptions.push(defaultDisposable, listDisposable, invokeDisposable, debugDisposable, createDisposable, updateDisposable, deleteDisposable, getDisposable, initDisposable, createSequenceDisposable, restDisposable);
+   
+    context.subscriptions.push(listDisposable, invokeDisposable, debugDisposable, createDisposable, updateDisposable, deleteDisposable, getDisposable, initDisposable, createSequenceDisposable, restDisposable);
+  
 }
 
-function defaultAction(params) {
+function defaultAction(params){
 
-    log.show(true);
-    log.appendLine('\n$ wsk action');
-    log.appendLine('available commands:');
-    log.appendLine('     init                create new action boilerplate file');
-    log.appendLine('     create              create new action');
-    log.appendLine('     sequence            create a new sequence of actions');
-    log.appendLine('     update              update an existing action');
-    log.appendLine('     invoke              invoke action');
-    log.appendLine('     get                 get action');
-    log.appendLine('     delete              delete action');
-    log.appendLine('     list                list all actions');
-    log.appendLine('     rest                display CURL rest invocation parameters');
+    helper.defaultAction('action'); 
 }
 
 function listAction(params) {
@@ -89,6 +81,7 @@ function listAction(params) {
     }
 
     log.show(true);
+  
     log.appendLine('\n$ wsk action list');
     actionList();
 }
@@ -410,7 +403,7 @@ function updateAction(params) {
     vscode.window.showQuickPick(getListAsStringArray(), {placeHolder:'Select an action to update:'})
     .then(function(action){
 
-        if (action == undefined) {
+        if (action == undefined) {  
             return;
         }
 
@@ -897,5 +890,6 @@ function getUniqueFilename(path, fileName, fileExt) {
 module.exports = {
     register: register,
     actionList:actionList,
+    task:task,
     getListAsStringArray:getListAsStringArray
 };

@@ -20,6 +20,8 @@
 var vscode = require('vscode');
 let util = require('./util.js');
 
+let helper = require('./helper.js');
+
 var log;
 var ow;
 var props;
@@ -42,18 +44,13 @@ function register(_ow, context, _log, _props) {
 
 function defaultAction(params) {
 
-    log.show(true);
-    log.appendLine('\n$ wsk activation');
-    log.appendLine('available commands:');
-    log.appendLine('    list                retrieve activations');
-    log.appendLine('    get                 get activation');
-    log.appendLine('    logs                get the logs of an activation');
-    log.appendLine('    result              get resul tof an activation');
+    
+    if (!props.validate()){
+        return;
+    }
+    helper.defaultAction('activation');
+   
 }
-
-
-
-
 
 function listAction(params) {
 

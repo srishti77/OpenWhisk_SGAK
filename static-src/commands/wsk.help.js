@@ -22,6 +22,7 @@ var vscode = require('vscode');
 var log;
 var ow;
 var props;
+let helper = require('./helper.js');
 
 function register(_ow, context, _log, _props) {
     ow = _ow;
@@ -34,15 +35,8 @@ function register(_ow, context, _log, _props) {
 
 function defaultAction(params) {
 
-    log.show(true);
-    log.appendLine('\n$ wsk help');
-    log.appendLine('available commands:');
-    log.appendLine('     bluemix             launch OpenWhisk console on Bluemix');
-    log.appendLine('     docs                open OpenWhisk docs');
-    log.appendLine('     property set        set property');
-    log.appendLine('     property unset      unset property');
-    log.appendLine('     property get        get property');
-    log.appendLine('     action              see available commands for OpenWhisk actions');
+    helper.defaultAction('help');
+  
 }
 
 module.exports = {

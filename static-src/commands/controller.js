@@ -30,7 +30,7 @@ let wskRule = require("./wsk.rule.js");
 let wskUtil = require("./wsk.util.js");
 let wskActivation = require("./wsk.activation.js");
 let wskProperty = require("./wsk.property.js");
-
+let wskHelper = require("./helper.js");
 var ow;
 let log = vscode.window.createOutputChannel("OpenWhisk");
 
@@ -51,6 +51,7 @@ function init(context) {
     wskRule.register(ow, context, log, wskProperty);
     wskUtil.register(ow, context, log, wskProperty);
     wskActivation.register(ow, context, log, wskProperty);
+   // wskHelper.register(ow, context, log, wskProperty);
 }
 
 module.exports = {
