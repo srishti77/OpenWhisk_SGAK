@@ -479,9 +479,9 @@ function createSequenceAction(params) {
 
         //first get the pipe action, so we can create the sequence action
         ow.actions.get({
-            actionName: 'weatherApp', // needs custom action name
+            actionName: 'act2', // needs custom action name
             blocking: true,
-            namespace: 'bonkilep@gmail.com_dev' // needs individual namespace
+            namespace: 'anjan8@gmail.com_dev' // needs individual namespace
         })
         .then(function(result) {
 
@@ -798,10 +798,6 @@ function initAction(params) {
 
  
     });
-}
-
-function doThem(params) {
-    
 }
 
 function restAction(params) {

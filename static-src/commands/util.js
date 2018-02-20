@@ -99,7 +99,6 @@ function printOpenWhiskError(error) {
 
 function parseParametersString(parameterString) {
     var params = {};
-
     var tokens = parameterString.split('-p ');
 
     for (var x=0; x<tokens.length; x++) {
@@ -113,7 +112,6 @@ function parseParametersString(parameterString) {
     }
 
     console.log(params)
-
     return params;
 }
 
