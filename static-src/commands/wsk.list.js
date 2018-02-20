@@ -41,7 +41,7 @@ function register(_ow, context, _log, _props) {
 
 function list() {
 
-    log.appendLine('\n$ wsk list');
+    log.appendLine('\n$ openwsk list');
 
     if (!props.validate()){
         return;

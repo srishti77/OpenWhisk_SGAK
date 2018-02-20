@@ -1,4 +1,3 @@
-
 var vscode = require('vscode');
 let log = vscode.window.createOutputChannel("OpenWhisk");
 var ow;
@@ -22,7 +21,7 @@ function register(_ow, _context, _log, _props) {
 function defaultAction(params) {
 
         log.show(true);      
-        log.appendLine('\n$ wsk '+ params);
+        log.appendLine('\n$ openwsk '+ params);
         log.appendLine('available commands:');
 
         if(params === 'action' || params === 'package' || params === 'rule' || params === 'trigger'){
@@ -78,5 +77,5 @@ function defaultAction(params) {
 
 module.exports = {
    register:register,
-    defaultAction:defaultAction
+   defaultAction:defaultAction
 };

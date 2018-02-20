@@ -47,8 +47,6 @@ function defaultAction(params) {
     helper.defaultAction('trigger')
 }
 
-
-
 function listAction(params) {
 
     if (!props.validate()){
@@ -56,7 +54,7 @@ function listAction(params) {
     }
 
     log.show(true);
-    log.appendLine('\n$ wsk trigger list');
+    log.appendLine('\n$ openwsk trigger list');
     triggerList();
 }
 
@@ -123,7 +121,7 @@ function createAction(params) {
             }
 
             log.show(true);
-            log.appendLine('\n$ wsk trigger create ' + trigger + ' ' + pString);
+            log.appendLine('\n$ openwsk trigger create ' + trigger + ' ' + pString);
 
             var activityInterval = setInterval(function() {
                 log.append('.');
@@ -202,7 +200,7 @@ function updateAction(params) {
             }
 
             log.show(true);
-            log.appendLine('\n$ wsk trigger update ' + trigger + ' ' + pString);
+            log.appendLine('\n$ openwsk trigger update ' + trigger + ' ' + pString);
 
             vscode.window.showWarningMessage('Are you sure you want to overwrite ' + trigger, YES, NO)
             .then( function(selection) {
@@ -275,7 +273,7 @@ function deleteAction(params) {
         var triggerToDelete = triggerString.substring(startIndex+1);
 
         log.show(true);
-        log.appendLine('\n$ wsk trigger delete ' + triggerToDelete);
+        log.appendLine('\n$ openwsk trigger delete ' + triggerToDelete);
 
         var options = {
             triggerName: triggerToDelete
@@ -320,7 +318,7 @@ function getAction(params) {
         var namespace = triggerString.substring(0, startIndex);
         var triggerToGet = triggerString.substring(startIndex+1);
 
-        log.appendLine('\n$ wsk trigger get ' + triggerToGet);
+        log.appendLine('\n$ openwsk trigger get ' + triggerToGet);
 
         var activityInterval = setInterval(function() {
             log.append('.');
@@ -375,7 +373,7 @@ function fireAction(params) {
             }
 
             log.show(true);
-            log.appendLine('\n$ wsk trigger fire ' + trigger + ' ' + pString);
+            log.appendLine('\n$ openwsk trigger fire ' + trigger + ' ' + pString);
 
             var activityInterval = setInterval(function() {
                 log.append('.');
