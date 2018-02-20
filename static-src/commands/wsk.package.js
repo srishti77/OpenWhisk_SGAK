@@ -53,12 +53,14 @@ function packageList() {
         return;
     }
 
-    return ow.packages.list().then(function (packages) {
+    return ow.packages.list()
+    .then(function (packages) {
         util.appendHeading('packages');
         for (var x=0; x<packages.length; x ++){
                 util.appendEntry(packages[x]);
         }
-    }).catch(function(error) {
+    })
+    .catch(function(error) {
         log.appendLine(error.toString())
     });
 }

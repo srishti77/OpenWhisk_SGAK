@@ -123,7 +123,8 @@ function getList() {
 }
 
 function getListAsStringArray() {
-    return getList().then(function (actions) {
+    return getList()
+    .then(function (actions) {
         var result = [];
         for (var x=0; x<actions.length; x ++){
             var actionName = util.formatQualifiedName(actions[x]);
@@ -134,7 +135,8 @@ function getListAsStringArray() {
 }
 
 function getListAsStringArrayForSequenceDialog(firstCall) {
-    return getListAsStringArray().then(function (actions) {
+    return getListAsStringArray()
+    .then(function (actions) {
         if (firstCall !== true ) {
             actions.unshift(sequenceComplete)
         }
@@ -185,7 +187,8 @@ function invokeAction(params) {
 
 function selectActionAndRequestParameters(callback) {
 
-    vscode.window.showQuickPick( getListAsStringArray(), {placeHolder:'Select an action.'}).then( function (action) {
+    vscode.window.showQuickPick( getListAsStringArray(), {placeHolder:'Select an action.'})
+    .then( function (action) {
 
         if (action == undefined) {
             return;
@@ -199,7 +202,8 @@ function selectActionAndRequestParameters(callback) {
         vscode.window.showInputBox({
             placeHolder:'Enter parameters list (-p key value) or leave blank for no parameters:',
             value:props.get(actionToInvoke)
-        }).then(function (parametersString) {
+        })
+        .then(function (parametersString) {
 
             var pString = ''
             if (parametersString != undefined) {
@@ -470,19 +474,23 @@ function createSequenceAction(params) {
         return;
     }
 
-    vscode.window.showInputBox({placeHolder:'Enter a name for your action:'})
+    vscode.window.showInputBox({placeHolder:'Enter a name for your sequence:'})
     .then(function(action){
+
+        log.show(true);
+        log.appendLine('\n$ wsk sequence create ' + action);
 
         if (action == undefined) {
             return;
-        }
+        }        
 
         //first get the pipe action, so we can create the sequence action
         ow.actions.get({
-            actionName: 'system/pipe',
-            blocking:true,
-            namespace: 'whisk.system'
-        }).then(function(result) {
+            actionName: 'weatherApp', // needs custom action name
+            blocking: true,
+            namespace: 'bonkilep@gmail.com_dev' // needs individual namespace
+        })
+        .then(function(result) {
 
             console.log(result);
             var pipeCode = result.exec.code;
@@ -535,9 +543,9 @@ function createSequenceAction(params) {
             }
 
             selectSequenceActions(true);
-
-
-
+        })
+        .catch(function(error){
+            util.printOpenWhiskError(error);
         });
     });
 }
@@ -710,78 +718,97 @@ function initAction(params) {
         return;
     }
 
-    vscode.window.showQuickPick( [NODE, PHP, PYTHON, SWIFT], {placeHolder:'Select the type of action:'}).then( function (action) {
+    vscode.window.showQuickPick( [NODE, PHP, PYTHON, SWIFT], {placeHolder:'Select the type of action:'})
+    .then( function (action) {
 
         if (action == undefined) {
             return;
         }
 
-        log.show(true);
-        log.appendLine('\n$ wsk action init:' + action);
+        var fileN;
+        vscode.window.showInputBox({ prompt: `Enter value for filename:` })
+            .then(function (value) {
 
-        var templateName = action.toLowerCase()
-        templateName = templateName.replace(/\s/g, '');
-        templateName = context.extensionPath + "/static-src/templates/" + templateName + ".template"
-        var template = '';
-
-
-        var path = vscode.workspace.rootPath + importDirectory
-
-        fs.readFile( templateName, 'utf8', function (err,data) {
-            if (err) {
-                log.appendLine(err);
-                console.log(err)
-                return false;
-            }
-
-            template = data.toString()
-
-            //todo: make it look for unique names or prompt for name
-
-            var buffer = new Buffer(template);
-            var fileName = 'newAction';
-            var fileExt = '';
-            if (action == NODE || action == NODE6) {
-                fileExt += '.js'
-            } else if (action == PHP) {
-                fileExt += '.php'
-            } else if (action == PYTHON) {
-                fileExt += '.py'
-            } else {
-                fileExt += '.swift'
-            }
-
-            var path = vscode.workspace.rootPath + importDirectory
-
-            if (!fs.existsSync(path)){
-                fs.mkdirSync(path);
-            }
-
-            var filePath = getUniqueFilename(path, fileName, fileExt);
-
-            fs.open(filePath, 'w', function(err, fd) {
-                if (err) {
-                    throw 'error opening file: ' + err;
+                if (!value) {
+                    return;
                 }
+                log.show(true);
+                log.appendLine(`$ Filename chosen: ${value}`);
+                fileN = value;
 
-                fs.write(fd, buffer, 0, buffer.length, null, function(err) {
-                    if (err) throw 'error writing file: ' + err;
-                    fs.close(fd, function() {
-                        //console.log('file written');
+                log.show(true);
+                log.appendLine('\n$ wsk action init:' + action);
 
-                        vscode.workspace.openTextDocument(filePath)
-                        .then(function(document) {
-                            //console.log(document)
-                            vscode.window.showTextDocument(document);
-                            log.appendLine('Created new action using ' + action + ' template as ' + filePath);
+                var templateName = action.toLowerCase()
+                templateName = templateName.replace(/\s/g, '');
+                templateName = context.extensionPath + "/static-src/templates/" + templateName + ".template"
+                var template = '';
+
+
+                var path = vscode.workspace.rootPath + importDirectory
+
+                fs.readFile(templateName, 'utf8', function (err, data) {
+                    if (err) {
+                        log.appendLine(err);
+                        console.log(err)
+                        return false;
+                    }
+
+                    template = data.toString()
+
+                    //todo: make it look for unique names or prompt for name
+
+                    var buffer = new Buffer(template);
+                    var fileName = fileN;
+                    var fileExt = '';
+                    if (action == NODE || action == NODE6) {
+                        fileExt += '.js'
+                    } else if (action == PHP) {
+                        fileExt += '.php'
+                    } else if (action == PYTHON) {
+                        fileExt += '.py'
+                    } else {
+                        fileExt += '.swift'
+                    }
+
+                    var path = vscode.workspace.rootPath + importDirectory
+
+                    if (!fs.existsSync(path)) {
+                        fs.mkdirSync(path);
+                    }
+
+                    var filePath = getUniqueFilename(path, fileName, fileExt);
+
+                    fs.open(filePath, 'w', function (err, fd) {
+                        if (err) {
+                            throw 'error opening file: ' + err;
+                        }
+
+                        fs.write(fd, buffer, 0, buffer.length, null, function (err) {
+                            if (err) throw 'error writing file: ' + err;
+                            fs.close(fd, function () {
+                                //console.log('file written');
+
+                                vscode.workspace.openTextDocument(filePath)
+                                    .then(function (document) {
+                                        //console.log(document)
+                                        vscode.window.showTextDocument(document);
+                                        log.appendLine('Created new action using ' + action + ' template as ' + filePath);
+                                    });
+
+                            })
                         });
+                    });
 
-                    })
                 });
             });
 
-        });
+ 
     });
+}
+
+function doThem(params) {
+    
 }
 
 function restAction(params) {

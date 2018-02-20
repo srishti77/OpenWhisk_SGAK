@@ -38,163 +38,163 @@
 		"commands": [
 			{
 				"command": "extension.wsk.list",
-				"title": "wsk list"
+				"title": "openwsk list"
 			},
 			{
 				"command": "extension.wsk.help",
-				"title": "wsk"
+				"title": "openwsk"
 			},
 			{
 				"command": "extension.wsk.help",
-				"title": "wsk help"
+				"title": "openwsk help"
 			},
 			{
 				"command": "extension.wsk.action",
-				"title": "wsk action"
+				"title": "openwsk action"
 			},
 			{
 				"command": "extension.wsk.action.list",
-				"title": "wsk action list"
+				"title": "openwsk action list"
 			},
 			{
 				"command": "extension.wsk.action.invoke",
-				"title": "wsk action invoke"
-			},
-			{
-				"command": "extension.wsk.action.debug",
-				"title": "openwsk action debug"
+				"title": "openwsk action invoke"
 			},
 			{
 				"command": "extension.wsk.action.create",
-				"title": "wsk action create"
+				"title": "openwsk action create"
 			},
 			{
 				"command": "extension.wsk.action.sequence.create",
-				"title": "wsk sequence create"
+				"title": "openwsk sequence create"
 			},
 			{
 				"command": "extension.wsk.action.update",
-				"title": "wsk action update"
+				"title": "openwsk action update"
 			},
 			{
 				"command": "extension.wsk.action.delete",
-				"title": "wsk action delete"
+				"title": "openwsk action delete"
 			},
 			{
 				"command": "extension.wsk.action.get",
-				"title": "wsk action get"
+				"title": "openwsk action get"
 			},
 			{
 				"command": "extension.wsk.action.init",
-				"title": "wsk action init"
+				"title": "openwsk action init"
 			},
 			{
 				"command": "extension.wsk.action.rest",
-				"title": "wsk action REST"
+				"title": "openwsk action REST"
+			},
+			{
+				"command": "extension.wsk.action.sequence.create",
+				"title": "openwsk action sequence"
 			},
 			{
 				"command": "extension.wsk.util.bluemix",
-				"title": "wsk bluemix"
+				"title": "openwsk bluemix"
 			},
 			{
 				"command": "extension.wsk.util.docs",
-				"title": "wsk docs"
+				"title": "openwsk docs"
 			},
 			{
 				"command": "extension.wsk.property.get",
-				"title": "wsk property get"
+				"title": "openwsk property get"
 			},
 			{
 				"command": "extension.wsk.property.set",
-				"title": "wsk property set"
+				"title": "openwsk property set"
 			},
 			{
 				"command": "extension.wsk.property.unset",
-				"title": "wsk property unset"
+				"title": "openwsk property unset"
 			},
 			{
 				"command": "extension.wsk.trigger",
-				"title": "wsk trigger"
+				"title": "openwsk trigger"
 			},
 			{
 				"command": "extension.wsk.trigger.list",
-				"title": "wsk trigger list"
+				"title": "openwsk trigger list"
 			},
 			{
 				"command": "extension.wsk.trigger.create",
-				"title": "wsk trigger create"
+				"title": "openwsk trigger create"
 			},
 			{
 				"command": "extension.wsk.trigger.update",
-				"title": "wsk trigger update"
+				"title": "openwsk trigger update"
 			},
 			{
 				"command": "extension.wsk.trigger.delete",
-				"title": "wsk trigger delete"
+				"title": "openwsk trigger delete"
 			},
 			{
 				"command": "extension.wsk.trigger.get",
-				"title": "wsk trigger get"
+				"title": "openwsk trigger get"
 			},
 			{
 				"command": "extension.wsk.trigger.fire",
-				"title": "wsk trigger fire"
+				"title": "openwsk trigger fire"
 			},
 			{
 				"command": "extension.wsk.rule",
-				"title": "wsk rule"
+				"title": "openwsk rule"
 			},
 			{
 				"command": "extension.wsk.rule.list",
-				"title": "wsk rule list"
+				"title": "openwsk rule list"
 			},
 			{
 				"command": "extension.wsk.rule.create",
-				"title": "wsk rule create"
+				"title": "openwsk rule create"
 			},
 			{
 				"command": "extension.wsk.rule.update",
-				"title": "wsk rule update"
+				"title": "openwsk rule update"
 			},
 			{
 				"command": "extension.wsk.rule.delete",
-				"title": "wsk rule delete"
+				"title": "openwsk rule delete"
 			},
 			{
 				"command": "extension.wsk.rule.enable",
-				"title": "wsk rule enable"
+				"title": "openwsk rule enable"
 			},
 			{
 				"command": "extension.wsk.rule.disable",
-				"title": "wsk rule disable"
+				"title": "openwsk rule disable"
 			},
 			{
 				"command": "extension.wsk.rule.status",
-				"title": "wsk rule status"
+				"title": "openwsk rule status"
 			},
 			{
 				"command": "extension.wsk.rule.get",
-				"title": "wsk rule get"
+				"title": "openwsk rule get"
 			},
 			{
 				"command": "extension.wsk.activation",
-				"title": "wsk activation"
+				"title": "openwsk activation"
 			},
 			{
 				"command": "extension.wsk.activation.list",
-				"title": "wsk activation list"
+				"title": "openwsk activation list"
 			},
 			{
 				"command": "extension.wsk.activation.get",
-				"title": "wsk activation get"
+				"title": "openwsk activation get"
 			},
 			{
 				"command": "extension.wsk.activation.logs",
-				"title": "wsk activation logs"
+				"title": "openwsk activation logs"
 			},
 			{
 				"command": "extension.wsk.activation.result",
-				"title": "wsk activation result"
+				"title": "openwsk activation result"
 			}
 		]
 	},
