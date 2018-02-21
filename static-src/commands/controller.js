@@ -32,8 +32,6 @@ let wskActivation = require("./wsk.activation.js");
 let wskProperty = require("./wsk.property.js");
 let wskHelper = require("./helper.js");
 
-// let wskActionInvoke = require("./wsk.action.invoke.js");
-
 var ow;
 let log = vscode.window.createOutputChannel("OpenWhisk");
 
@@ -42,7 +40,6 @@ function init(context) {
 
     //api key and namespace will be set when config values are loaded
     ow = openwhisk({api: 'https://openwhisk.ng.bluemix.net/api/v1/', api_key: 'invalid', namespace: ''});
-
     util.setLog(log);
 
     wskProperty.register(ow, context, log);
@@ -55,7 +52,6 @@ function init(context) {
     wskUtil.register(ow, context, log, wskProperty);
     wskActivation.register(ow, context, log, wskProperty);
 
-    //wskActionInvoke.register(ow, context, log, wskProperty);
 }
 
 module.exports = {

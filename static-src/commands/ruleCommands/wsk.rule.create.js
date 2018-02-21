@@ -68,10 +68,14 @@ function createRule(params) {
                             }, 300);
 
                             var startTime = new Date().getTime();
+
+                            // Problem with creating namespace - namespace not recognized
                             var invocationParams = {
-                                ruleName: rule,
+                                ruleName: rule,                            
                                 trigger: parsedTrigger.name,
-                                action: parsedAction.name
+                                action: parsedAction.name,
+                                blocking: true,
+                                namespace: namespace
                             }
 
                             ow.rules.create(invocationParams)

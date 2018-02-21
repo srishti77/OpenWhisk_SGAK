@@ -19,7 +19,6 @@
 
 var vscode = require('vscode');
 let util = require('./util.js');
-
 let helper = require('./helper.js');
 
 var log;
@@ -32,28 +31,21 @@ function register(_ow, context, _log, _props) {
     props = _props;
 
     var defaultDisposable = vscode.commands.registerCommand('extension.wsk.activation', defaultAction);
-    var listDisposable = vscode.commands.registerCommand('extension.wsk.activation.list', listAction);
-    var getDisposable = vscode.commands.registerCommand('extension.wsk.activation.get', getAction);
-    var logsDisposable = vscode.commands.registerCommand('extension.wsk.activation.logs', logsAction);
-    var resultDisposable = vscode.commands.registerCommand('extension.wsk.activation.result', resultAction);
+    var listDisposable = vscode.commands.registerCommand('extension.wsk.activation.list', listActivation);
+    var getDisposable = vscode.commands.registerCommand('extension.wsk.activation.get', getActivation);
+    var logsDisposable = vscode.commands.registerCommand('extension.wsk.activation.logs', logsActivation);
+    var resultDisposable = vscode.commands.registerCommand('extension.wsk.activation.result', resultActivation);
 
 
     context.subscriptions.push(defaultDisposable, listDisposable, getDisposable, logsDisposable,resultDisposable );
 }
 
 
-function defaultAction(params) {
-
-    
-    if (!props.validate()){
-        return;
-    }
-    helper.defaultAction('activation');
-   
+function defaultAction(params) {    
+    helper.defaultAction('activation');   
 }
 
-function listAction(params) {
-
+function listActivation(params) {
     if (!props.validate()){
         return;
     }
@@ -107,7 +99,7 @@ function getListAsStringArray() {
 }
 
 
-function getAction(params) {
+function getActivation(params) {
 
     if (!props.validate()){
         return;
@@ -124,7 +116,7 @@ function getAction(params) {
 }
 
 
-function logsAction(params) {
+function logsActivation(params) {
 
     if (!props.validate()){
         return;
@@ -147,7 +139,7 @@ function logsAction(params) {
 }
 
 
-function resultAction(params) {
+function resultActivation(params) {
 
     if (!props.validate()){
         return;

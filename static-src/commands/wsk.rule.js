@@ -99,321 +99,33 @@ function getList() {
     });
 }
 
-// function getListAsStringArray() {
-//     return getList().then(function (rules) {
-//         var result = [];
-//         for (var x=0; x<rules.length; x ++){
-//             var name = util.formatQualifiedName(rules[x]);
-//             result.push(name)
-//         }
-//         return result;
-//     })
-// }
 
-// function getActionListAsStringArray() {
-//     return wskAction.getListAsStringArray()
-// }
-// function getTriggerListAsStringArray() {
-//     return wskTrigger.getListAsStringArray()
-// }
-
-
+// corresponding functions for Rule commands
 
 function createRule(params) {
-
     crRule.register(ow, context, log, props);
     crRule.createRule(params);
-    // if (!props.validate()){
-    //     return;
-    // }
-
-    // var YES = 'Yes';
-    // var NO = 'No';
-
-    // vscode.window.showInputBox({placeHolder:'Enter a name for your rule:'})
-    // .then(function(rule){
-
-    //     if (rule == undefined) {
-    //         return;
-    //     }
-
-    //     vscode.window.showQuickPick(getTriggerListAsStringArray(), {placeHolder:'Select a trigger to bind:'})
-    //     .then(function(trigger){
-
-    //         if (trigger == undefined) {
-    //             return;
-    //         }
-
-
-    //         vscode.window.showQuickPick(getActionListAsStringArray(), {placeHolder:'Select a action to bind:'})
-    //         .then(function(action){
-
-    //             if (action == undefined) {
-    //                 return;
-    //             }
-
-    //             var parsedTrigger = util.parseQualifiedName(trigger);
-    //             var parsedAction = util.parseQualifiedName(action);
-
-    //             log.show(true);
-    //             log.appendLine(`\n$ wsk rule create ${rule} ${parsedTrigger.name} ${parsedAction.name}`);
-
-    //             var activityInterval = setInterval(function() {
-    //                 log.append('.');
-    //             },300);
-
-    //             var startTime = new Date().getTime();
-    //             var invocationParams = {
-    //                 ruleName: rule,
-    //                 trigger:parsedTrigger.name,
-    //                 action:parsedAction.name
-    //             }
-
-    //             ow.rules.create(invocationParams)
-    //             .then(function(result) {
-    //                 var totalTime = startTime - (new Date().getTime());
-    //                 clearInterval(activityInterval);
-    //                 log.appendLine(JSON.stringify(result,  null, 4))
-    //                 log.appendLine('>> completed in ' + (-totalTime) + 'ms');
-
-
-    //                 vscode.window.showWarningMessage('Would you like to activate  ' + rule + '?', YES, NO)
-    //                 .then( function(selection) {
-    //                     if (selection === YES) {
-
-    //                         var qualifiedRule = props.get("namespace") + "/" + rule;
-
-    //                         doStatusChange(qualifiedRule, true);
-    //                     }
-    //                 });
-
-    //             })
-    //             .catch(function(error) {
-    //                 clearInterval(activityInterval);
-    //                 util.printOpenWhiskError(error);
-    //             });
-
-    //         })
-    //     })
-    // });
 }
 
 function updateRule(params) {
-
     upRule.register(ow, context, log, props);
     upRule.updateRule(params);
-    // if (!props.validate()){
-    //     return;
-    // }
-
-    // var YES = 'Yes';
-    // var NO = 'No';
-
-    // vscode.window.showQuickPick(getListAsStringArray(), {placeHolder:'Select a rule to update:'})
-    // .then(function(rule){
-
-    //     if (rule == undefined) {
-    //         return;
-    //     }
-
-    //     var parsedRule = util.parseQualifiedName(rule);
-    //     rule = parsedRule.name;
-
-
-    //     vscode.window.showQuickPick(getTriggerListAsStringArray(), {placeHolder:'Select a trigger to bind:'})
-    //     .then(function(trigger){
-
-    //         if (trigger == undefined) {
-    //             return;
-    //         }
-
-    //         vscode.window.showQuickPick(getActionListAsStringArray(), {placeHolder:'Select a action to bind:'})
-    //         .then(function(action){
-
-    //             if (action == undefined) {
-    //                 return;
-    //             }
-
-    //             var parsedTrigger = util.parseQualifiedName(trigger);
-    //             var parsedAction = util.parseQualifiedName(action);
-
-    //             log.show(true);
-    //             log.appendLine(`\n$ wsk rule update ${rule} ${parsedTrigger.name} ${parsedAction.name}`);
-
-    //             vscode.window.showWarningMessage('Are you sure you want to overwrite ' + rule, YES, NO)
-    //             .then( function(selection) {
-    //                 if (selection === YES) {
-
-    //                     var activityInterval = setInterval(function() {
-    //                         log.append('.');
-    //                     },300);
-
-    //                     var startTime = new Date().getTime();
-    //                     var invocationParams = {
-    //                         ruleName: rule,
-    //                         trigger:parsedTrigger.name,
-    //                         action:parsedAction.name
-    //                     }
-
-    //                     ow.rules.update(invocationParams)
-    //                     .then(function(result) {
-    //                         var totalTime = startTime - (new Date().getTime());
-    //                         clearInterval(activityInterval);
-    //                         log.appendLine(JSON.stringify(result,  null, 4))
-    //                         log.appendLine('>> completed in ' + (-totalTime) + 'ms');
-    //                     })
-    //                     .catch(function(error) {
-    //                         clearInterval(activityInterval);
-    //                         util.printOpenWhiskError(error);
-    //                     });
-    //                 } else {
-    //                     log.appendLine('cancelled by user')
-    //                 }
-    //             })
-    //         })
-    //     })
-    // });
 }
-
-
-
-
 
 function deleteRule(params) {
-
     dlRule.register(ow, context, log, props);
     dlRule.deleteRule(params);
-    // if (!props.validate()){
-    //     return;
-    // }
-
-    // vscode.window.showQuickPick(getListAsStringArray(), {placeHolder:'Select a rule to delete:'})
-    // .then(function(rule){
-
-    //     if (rule == undefined) {
-    //         return;
-    //     }
-
-    //     var parsedRule = util.parseQualifiedName(rule)
-
-    //     log.show(true);
-    //     log.appendLine('\n$ wsk trigger delete ' + parsedRule.name);
-
-    //     var options = {
-    //         ruleName: parsedRule.name,
-    //         namespace: parsedRule.namespace
-    //     };
-
-    //     var YES = 'Yes';
-    //     var NO = 'No';
-
-    //     vscode.window.showWarningMessage('Are you sure you want to delete ' + parsedRule.name, YES, NO)
-    //     .then( function(selection) {
-    //         if (selection === YES) {
-    //             ow.rules.delete(options)
-    //             .then(function(result) {
-    //                 var message = 'OpenWhisk rule deleted: ' + util.formatQualifiedName(result);
-    //                 log.appendLine(message);
-    //                 vscode.window.showInformationMessage(message);
-    //             })
-    //             .catch(function(error) {
-    //                 log.appendLine('rule status must be \'inactive\' to delete');
-    //             });
-    //         }
-    //     });
-    // });
 }
-
 
 function getRule(params) {
-
     gtRule.register(ow, context, log, props);
     gtRule.getRule(params);
-    // if (!props.validate()){
-    //     return;
-    // }
-
-    // vscode.window.showQuickPick(getListAsStringArray(), {placeHolder:'Select a rule to fetch:'})
-    // .then(function(rule){
-
-    //     if (rule == undefined) {
-    //         return;
-    //     }
-
-    //     var parsedRule = util.parseQualifiedName(rule)
-
-    //     log.appendLine('\n$ wsk rule get ' + parsedRule.name);
-
-    //     var activityInterval = setInterval(function() {
-    //         log.append('.');
-    //     },300);
-
-    //     var startTime = new Date().getTime();
-    //     var invocationParams = {
-    //         ruleName: parsedRule.name,
-    //         blocking:true,
-    //         namespace: parsedRule.namespace
-    //     }
-    //     ow.rules.get(invocationParams)
-    //     .then(function(result) {
-    //         var totalTime = startTime - (new Date().getTime());
-    //         clearInterval(activityInterval);
-    //         log.appendLine(JSON.stringify(result,  null, 4))
-    //         log.appendLine('>> completed in ' + (-totalTime) + 'ms');
-    //     })
-    //     .catch(function(error) {
-    //         clearInterval(activityInterval);
-    //         util.printOpenWhiskError(error);
-    //     });
-    // });
 }
-
 
 function statusRule(params) {
-
     stRule.register(ow, context, log, props);
     stRule.statusRule(params);
-    // if (!props.validate()){
-    //     return;
-    // }
-
-    // vscode.window.showQuickPick(getListAsStringArray(), {placeHolder:'Select a rule to fetch:'})
-    // .then(function(rule){
-
-    //     if (rule == undefined) {
-    //         return;
-    //     }
-
-    //     var parsedRule = util.parseQualifiedName(rule)
-
-    //     log.appendLine('\n$ wsk rule status ' + parsedRule.name);
-
-    //     var activityInterval = setInterval(function() {
-    //         log.append('.');
-    //     },300);
-
-    //     var startTime = new Date().getTime();
-    //     var invocationParams = {
-    //         ruleName: parsedRule.name,
-    //         blocking:true,
-    //         namespace: parsedRule.namespace
-    //     }
-    //     ow.rules.get(invocationParams)
-    //     .then(function(result) {
-    //         var totalTime = startTime - (new Date().getTime());
-    //         clearInterval(activityInterval);
-    //         log.appendLine(`\nok: rule ${parsedRule.name} is ${result.status}`)
-    //         log.appendLine('>> completed in ' + (-totalTime) + 'ms');
-    //     })
-    //     .catch(function(error) {
-    //         clearInterval(activityInterval);
-    //         util.printOpenWhiskError(error);
-    //     });
-    // });
 }
-
-
-
 
 function enableRule(params) {
     stcRule.register(ow, context, log, props);
@@ -424,65 +136,6 @@ function disableRule(params) {
     stcRule.register(ow, context, log, props);
     stcRule.doStatusChange(undefined, false);
 }
-
-// function doStatusChange(rule, enable) {
-//     if (!props.validate()){
-//         return;
-//     }
-
-//     var statusChangeImpl = function(rule){
-
-//         if (rule == undefined) {
-//             return;
-//         }
-
-//         var parsedRule = util.parseQualifiedName(rule)
-//         log.appendLine(`\n$ wsk rule ${enable?'enable':'disable'} ${parsedRule.name}`);
-
-//         var activityInterval = setInterval(function() {
-//             log.append('.');
-//         },300);
-
-//         var startTime = new Date().getTime();
-//         var invocationParams = {
-//             ruleName: parsedRule.name,
-//             blocking:true,
-//             namespace: parsedRule.namespace
-//         }
-
-//         var callback = function(result) {
-//             var totalTime = startTime - (new Date().getTime());
-//             clearInterval(activityInterval);
-//             log.appendLine(`ok: rule ${parsedRule.name} ${enable?'enabled':'disabled'}`)
-//             log.appendLine('>> completed in ' + (-totalTime) + 'ms');
-//         }
-//         var error = function(error) {
-//             clearInterval(activityInterval);
-//             util.printOpenWhiskError(error);
-//         }
-
-//         if (enable) {
-//             ow.rules.enable(invocationParams)
-//             .then(callback)
-//             .catch(error);
-//         } else {
-//             ow.rules.disable(invocationParams)
-//             .then(callback)
-//             .catch(error);
-//         }
-//     }
-
-//     if (rule == undefined) {
-//         //${enable?'enable'?'disable'}
-//         vscode.window.showQuickPick(getListAsStringArray(), {placeHolder:`Select a rule to :`})
-//         .then(statusChangeImpl);
-//     } else {
-//         statusChangeImpl(rule)
-//     }
-
-// }
-
-
 
 module.exports = {
     register: register,

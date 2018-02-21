@@ -81,7 +81,7 @@ function createSequenceAction(params) {
         .then(function (action) {
 
             log.show(true);
-            log.appendLine('\n$ openwsk sequence create ' + action);
+            log.appendLine('\n$ openwsk action create ' + action);
 
             if (action == undefined) {
                 return;
@@ -89,9 +89,9 @@ function createSequenceAction(params) {
 
             //first get the pipe action, so we can create the sequence action
             ow.actions.get({
-                actionName: 'act2', // needs custom action name
+                actionName: 'tr2', // needs custom action name
                 blocking: true,
-                namespace: 'anjan8@gmail.com_dev' // needs individual namespace
+                namespace: 'bonkilep@gmail.com_dev' // needs individual namespace
             })
                 .then(function (result) {
 
