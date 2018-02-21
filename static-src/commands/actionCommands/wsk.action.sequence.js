@@ -78,13 +78,13 @@ function createSequenceAction(params) {
 
             //first get the pipe action, so we can create the sequence action
             ow.actions.get({
-                actionName: 'jay1',                   // needs initial action name
-                blocking: true,                      // blocking remains true
-                namespace: 'bonkilep@gmail.com_dev' // needs individual namespace
+                // actionName: 'jay1',                   // needs initial action name
+                // blocking: true,                      // blocking remains true
+                // namespace: 'bonkilep@gmail.com_dev' // needs individual namespace
 
-                // actionName: 'system/pipe',
-                // blocking: true,
-                // namespace: 'whisk.system'
+                actionName: 'system/pipe',
+                blocking: true,
+                namespace: 'whisk.system'
             })
                 .then(function (result) {
 
