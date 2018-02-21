@@ -2,11 +2,8 @@
 
 var vscode = require('vscode');
 let util = require('./../util.js');
-
-
 let wskAction = require('./../wsk.action.js');
 let wskTrigger = require('./../wsk.trigger.js');
-
 let helper = require('./../helper.js');
 
 var log;
