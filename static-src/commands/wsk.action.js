@@ -23,14 +23,14 @@ let fs = require('fs');
 let spawn = require('child_process').spawn;
 
 let helper = require('./helper.js');
-let ivAct = require('./wsk.action.invoke.js');
-let crAct = require('./wsk.action.create.js');
-let upAct = require('./wsk.action.update.js');
-let sqAct = require('./wsk.action.sequence.js');
-let dlAct = require('./wsk.action.delete.js');
-let gtAct = require('./wsk.action.get.js');
-let rsAct = require('./wsk.action.rest.js');
-let inAct = require('./wsk.action.init.js');
+let ivAct = require('./actionCommands/wsk.action.invoke.js');
+let crAct = require('./actionCommands/wsk.action.create.js');
+let upAct = require('./actionCommands/wsk.action.update.js');
+let sqAct = require('./actionCommands/wsk.action.sequence.js');
+let dlAct = require('./actionCommands/wsk.action.delete.js');
+let gtAct = require('./actionCommands/wsk.action.get.js');
+let rsAct = require('./actionCommands/wsk.action.rest.js');
+let inAct = require('./actionCommands/wsk.action.init.js');
 
 var importDirectory = '/wsk-import/';
 

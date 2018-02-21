@@ -20,11 +20,11 @@
 var vscode = require('vscode');
 let util = require('./util.js');
 let helper = require('./helper.js');
-let crTrgg = require('./wsk.trigger.create.js');
-let upTrgg = require('./wsk.trigger.update.js');
-let dlTrgg = require('./wsk.trigger.delete.js');
-let gtTrgg = require('./wsk.trigger.get.js');
-let frTrgg = require('./wsk.trigger.fire.js');
+let crTrgg = require('./triggerCommands/wsk.trigger.create.js');
+let upTrgg = require('./triggerCommands/wsk.trigger.update.js');
+let dlTrgg = require('./triggerCommands/wsk.trigger.delete.js');
+let gtTrgg = require('./triggerCommands/wsk.trigger.get.js');
+let frTrgg = require('./triggerCommands/wsk.trigger.fire.js');
 
 var log;
 var ow;
@@ -107,8 +107,8 @@ function getListAsStringArray() {
 
 function createTrigger(params) {
 
-    upTrgg.register(ow, context, log, props);
-    upTrgg.updateTrigger(params);
+    crTrgg.register(ow, context, log, props);
+    crTrgg.createTrigger(params);
     // if (!props.validate()){
     //    return;
     // }

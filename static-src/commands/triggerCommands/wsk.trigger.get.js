@@ -1,8 +1,8 @@
 'use strict';
 
 var vscode = require('vscode');
-let util = require('./util.js');
-let helper = require('./helper.js');
+let util = require('./../util.js');
+let helper = require('./../helper.js');
 var log;
 var ow;
 var props;
