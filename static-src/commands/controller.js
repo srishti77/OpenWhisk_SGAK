@@ -35,6 +35,7 @@ let wskHelper = require("./helper.js");
 var ow;
 let log = vscode.window.createOutputChannel("OpenWhisk");
 
+// prelim working version
 
 function init(context) {
 
