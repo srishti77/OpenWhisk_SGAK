@@ -4,7 +4,6 @@ var vscode = require('vscode');
 let util = require('./../util.js');
 let fs = require('fs');
 let spawn = require('child_process').spawn;
-
 var importDirectory = '/wsk-import/';
 
 var actions = [];
@@ -13,8 +12,6 @@ var props;
 var context;
 let log = vscode.window.createOutputChannel("OpenWhisk");
 
-var task = 'OpenWhisk';
-
 //supported OpenWhisk file formats
 var NODE = 'JavaScript',
     NODE6 = 'JavaScript 6',
@@ -22,13 +19,7 @@ var NODE = 'JavaScript',
     PYTHON = 'Python',
     SWIFT = 'Swift';
 
-var sequenceComplete = {
-    description: '',
-    detail: 'Sequence Complete - select this option to complete the sequence.  No additional action will be added to the sequence.',
-    label: '-- No Action --',
-}//'--- - Sequence Complete ---';
-
-
+    
 function register(_ow, _context, _log, _props) {
     ow = _ow;
     log = _log;

@@ -4,7 +4,6 @@ var vscode = require('vscode');
 let util = require('./../util.js');
 let fs = require('fs');
 let spawn = require('child_process').spawn;
-
 var importDirectory = '/wsk-import/';
 
 var actions = [];

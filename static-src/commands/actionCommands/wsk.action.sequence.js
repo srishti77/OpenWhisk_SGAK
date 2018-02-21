@@ -4,7 +4,6 @@ var vscode = require('vscode');
 let util = require('./../util.js');
 let fs = require('fs');
 let spawn = require('child_process').spawn;
-
 var importDirectory = '/wsk-import/';
 
 var actions = [];
@@ -13,21 +12,11 @@ var props;
 var context;
 let log = vscode.window.createOutputChannel("OpenWhisk");
 
-var task = 'OpenWhisk';
-
-//supported OpenWhisk file formats
-var NODE = 'JavaScript',
-    NODE6 = 'JavaScript 6',
-    PHP = 'PHP',
-    PYTHON = 'Python',
-    SWIFT = 'Swift';
-
 var sequenceComplete = {
     description: '',
     detail: 'Sequence Complete - select this option to complete the sequence.  No additional action will be added to the sequence.',
     label: '-- No Action --',
 }//'--- - Sequence Complete ---';
-
 
 function register(_ow, _context, _log, _props) {
     ow = _ow;
@@ -89,9 +78,13 @@ function createSequenceAction(params) {
 
             //first get the pipe action, so we can create the sequence action
             ow.actions.get({
-                actionName: 'tr2', // needs custom action name
-                blocking: true,
+                actionName: 'jay1',                   // needs initial action name
+                blocking: true,                      // blocking remains true
                 namespace: 'bonkilep@gmail.com_dev' // needs individual namespace
+
+                // actionName: 'system/pipe',
+                // blocking: true,
+                // namespace: 'whisk.system'
             })
                 .then(function (result) {
 

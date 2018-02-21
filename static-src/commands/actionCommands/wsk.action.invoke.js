@@ -4,7 +4,6 @@ var vscode = require('vscode');
 let util = require('./../util.js');
 let fs = require('fs');
 let spawn = require('child_process').spawn;
-
 var importDirectory = '/wsk-import/';
 
 var actions = [];
@@ -12,6 +11,7 @@ var ow;
 var props;
 var context;
 let log = vscode.window.createOutputChannel("OpenWhisk");
+
 
 function register(_ow, _context, _log, _props) {
     ow = _ow;
