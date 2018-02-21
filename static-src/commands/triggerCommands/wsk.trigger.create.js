@@ -7,20 +7,13 @@ var log;
 var ow;
 var props;
 
-
 function register(_ow, context, _log, _props) {
     ow = _ow;
     log = _log;
     props = _props;
-
 }
     
 function createTrigger(params) {
-
-            log.show(true);
-            log.appendLine('\n$ openwsk trigger create ');
-
-
     if (!props.validate()) {
         return;
     }

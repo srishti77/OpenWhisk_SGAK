@@ -7,12 +7,10 @@ var log;
 var ow;
 var props;
 
-
 function register(_ow, context, _log, _props) {
     ow = _ow;
     log = _log;
     props = _props;
-
 }
 
 function getList() {
